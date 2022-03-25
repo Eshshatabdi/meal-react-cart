@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../Navbar/Product/Product';
 
 const Card = () => {
@@ -11,6 +12,11 @@ const Card = () => {
 
     }, [])
 
+    const handleToCart = (card) => {
+        const newCart = [...carts, card]
+        setCarts(newCart)
+    }
+
 
 
 
@@ -19,11 +25,22 @@ const Card = () => {
 
             <div className="row container">
                 {
-                    cards.map(card => <Product card={card} ></Product>)
+                    cards.map(card => <Product key={card.id}
+                        card={card}
+                        handleToCart={handleToCart}
+                    ></Product>)
                 }
             </div>
             <div className='bg-info'>
-                <h2>Order Sumery</h2>
+                <h1>Order the item</h1>
+
+
+                {
+                    carts.map(cart => <Cart key={cart.idMeal}
+
+                        cart={cart}></Cart>)
+                }
+
 
             </div>
 
